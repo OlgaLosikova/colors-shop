@@ -1,13 +1,18 @@
 <script setup>
-defineProps({
-  category: String,
-});
+const categories = [
+  "новинки",
+  "Есть в наличии",
+  "Контрактные",
+  "Эксклюзивные",
+  "Распродажа",
+];
 </script>
 
 <template>
-  <label class="switch">
-  
-    <input type="checkbox" class="switch-input" />
+  <label class="switch"  v-for="category in categories"
+          :key="category"
+          :category="category">
+      <input type="checkbox" class="switch-input" />
     <span class="switch-slider"></span>{{ category }}
   </label>
 </template>

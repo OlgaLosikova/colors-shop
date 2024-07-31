@@ -1,11 +1,17 @@
-<script setup></script>
+<script setup>
+defineProps({
+imageUrl:String,
+title:String,
+price:Number,
+})
+</script>
 
 <template>
   <div class="card">
-    <img src="../assets/Border.png" alt="product-img" />
-    <p>Краска Wallquest, Brownsone MS90102</p>
+    <img :src="imageUrl" alt="product-img" />
+    <p>{{ title }}</p>
     <div class="card-footer">
-      <p class="card-price">6000 ₽</p>
+      <p class="card-price">{{ price }} ₽</p>
       <button class="add-button"><img  src="../assets/svg/plus.svg" alt="plus" /></button>
     </div>
   </div>
@@ -17,6 +23,8 @@
   display: inline-block;
   flex-direction: column;
   align-items: center;
+  padding: 0;
+  border-bottom: 1px solid #0000001a;
 }
 .add-button {
   width: 80px;
