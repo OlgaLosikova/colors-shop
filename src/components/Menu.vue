@@ -1,20 +1,26 @@
 <script setup>
 defineProps({
-    closeSort:Function,
-})
+  changeSort: Function,
+  isOpen: Boolean,
+});
 const sort = [
-  "Сначала дорогие",
-  "Сначала недорогие",
-  "Сначала популярные",
-  "Сначала новые",
+  {title:"Сначала дорогие",type:"-price"},
+  {title:"Сначала недорогие", type:"price"},
+  {title:"Сначала популярные", type:"-popularity"},
+  {title:"Сначала новые", type:"-date"},
 ];
+
 </script>
 
 <template>
-  <div class="menu">
-    <p v-for="item in sort" :key="item" class="menu-item" @click="closeSort">{{ item }}</p>
-  </div>
-  <div class="menu-overlay"></div>
+
+    <div v-if="isOpen" class="menu">
+      <p v-for="item in sort" :key="item.title" class="menu-item" @click="()=>changeSort(item.title, item.type)">
+        {{ item.title }}
+      </p>
+    </div>
+    <div v-if="isOpen" class="menu-overlay"></div>
+
 </template>
 
 <style scoped>
@@ -36,7 +42,7 @@ const sort = [
   background-color: #fff;
   width: 280px;
   text-align: start;
-  right: 0;
+  right: 64px;
   z-index: 1010;
 }
 .menu-item {

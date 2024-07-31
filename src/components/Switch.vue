@@ -1,19 +1,29 @@
 <script setup>
+defineProps({
+  selectCategory: Function,
+});
 const categories = [
-  "новинки",
-  "Есть в наличии",
-  "Контрактные",
-  "Эксклюзивные",
-  "Распродажа",
+  { title: "новинки", number: 1 },
+  { title: "Есть в наличии", number: 2 },
+  { title: "Контрактные", number: 3 },
+  { title: "Эксклюзивные", number: 4 },
+  { title: "Распродажа", number: 5 },
 ];
 </script>
 
 <template>
-  <label class="switch"  v-for="category in categories"
-          :key="category"
-          :category="category">
-      <input type="checkbox" class="switch-input" />
-    <span class="switch-slider"></span>{{ category }}
+  <label
+    class="switch"
+    v-for="category in categories"
+    :key="category.title"
+    :category="category"
+  >
+    <input
+      type="checkbox"
+      class="switch-input"
+      @click.self="(e) => selectCategory(e,category.number)"
+    />
+    <span class="switch-slider"></span>{{ category.title }}
   </label>
 </template>
 
@@ -25,7 +35,6 @@ const categories = [
   border-radius: 11px;
   color: #1f2020;
   text-align: start;
-
 }
 .switch-input {
   width: 0;
