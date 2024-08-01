@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref, reactive, watch } from "vue";
+
 import axios from "axios";
 
 import Header from "./components/Header.vue";
@@ -7,6 +8,7 @@ import Slider from "./components/Slider/Slider.vue";
 import Switch from "./components/Switch.vue";
 import Cart from "./components/Cart/Cart.vue";
 import Table from "./components/Table/Table.vue";
+
 
 const baseUrl = "https://568abbd2ee538587.mokky.dev/items";
 const products = ref([]);

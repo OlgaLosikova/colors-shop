@@ -1,21 +1,39 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
+import { useCartStore } from "../../store/CartSore";
 
 defineProps({
-imageUrl:String,
-title:String,
-price:Number,
-})
-const isMouseOver=ref(false)
+  imageUrl: String,
+  title: String,
+  price: Number,
+  id: Number,
+});
+const isMouseOver = ref(false);
+const cartStore = useCartStore();
+
+const addProduct = (obj) => {
+  cartStore.addToCart(obj);
+
+};
 </script>
 
 <template>
-  <div class="card" @mouseover="isMouseOver=true" @mouseleave="isMouseOver=false">
+  <div
+    class="card"
+    @mouseover="isMouseOver = true"
+    @mouseleave="isMouseOver = false"
+  >
     <img :src="imageUrl" alt="product-img" />
     <p>{{ title }}</p>
     <div class="card-footer">
       <p class="card-price">{{ price }} ₽</p>
-      <button v-if="isMouseOver" class="add-button"><img  src="../../assets/svg/plus.svg" alt="plus" /></button>
+      <button
+        v-if="isMouseOver"
+        @click="() => addProduct({ title, price, id, imageUrl })"
+        class="add-button"
+      >
+        <img src="../../assets/svg/plus.svg" alt="plus" />
+      </button>
     </div>
   </div>
 </template>
@@ -38,9 +56,9 @@ const isMouseOver=ref(false)
 .card-price {
   font-weight: 600;
 }
-.card-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

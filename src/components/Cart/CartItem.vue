@@ -8,13 +8,13 @@ defineProps({
 
 <template>
   <div class="cart-item">
-    <img :src="imageUrl" alt="prduct-img" />
-    <div>
+    <img :src="imageUrl" alt="product-img" />
+    <div class="product-text">
       <p>{{ title }}</p>
-      <p>{{ price }}</p>
+      <p>{{ price }} ₽</p>
     </div>
     <div class="buttons-wrapper">
-      <button ><img src="../../assets/svg/minus.svg" alt="minus" /></button
+      <button><img src="../../assets/svg/minus.svg" alt="minus" /></button
       ><span>2</span
       ><button><img src="../../assets/svg/plus.svg" alt="plus" /></button>
     </div>
@@ -26,30 +26,42 @@ defineProps({
 .cart-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   border-top: 1px solid #0000001a;
   padding: 12px 0;
 }
-.buttons-wrapper{
-    display: flex;
-align-items: center;
+.cart-item > img:first-child {
+  width: 96px;
+  height: 96px;
+  margin-right: 8px;
+}
+.buttons-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.buttons-wrapper > button {
+  background-color: #f2f2f2;
+  padding: 4px 12px;
+}
 
+.buttons-wrapper > button > img {
+  width: 16px;
+  height: 16px;
 }
-.buttons-wrapper>button{
-background-color: #f2f2f2;
-padding: 4px 12px;
+.buttons-wrapper > span {
+  margin: 0 20px;
 }
-
-.buttons-wrapper>button>img{
-width: 16px;
-height: 16px;
-
+.cart-delete {
+  opacity: 20%;
+  margin-left: 37px;
 }
-.buttons-wrapper>span{
-margin: 0 20px;
+.product-text{
+  text-align: start;
+  flex-basis: 25%;
 }
-.cart-delete{
-    opacity: 20%;
+.product-text>p:last-child{
+  font-weight: 500;
 }
 </style>

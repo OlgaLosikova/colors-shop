@@ -27,6 +27,7 @@ defineProps({
       <Card
         v-for="product in products"
         :key="product.id"
+        :id="product.id"
         :title="product.product"
         :price="product.price"
         :imageUrl="product.image"

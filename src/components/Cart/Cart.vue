@@ -1,9 +1,15 @@
 <script setup>
+import { useCartStore } from "../../store/CartSore";
+
 defineProps({
-isOpenCart:Boolean,
-closeCart:Function,
-})
-import CartItem from './CartItem.vue'
+  isOpenCart: Boolean,
+  closeCart: Function,
+});
+
+import CartItem from "./CartItem.vue";
+
+const cartStore = useCartStore();
+console.log(cartStore.addedItems);
 </script>
 
 <template>
@@ -12,18 +18,31 @@ import CartItem from './CartItem.vue'
       <header>
         <h2>Корзина</h2>
         <span @click="closeCart" class="close-img"
-          ><img  src="../../assets/svg/x.svg" alt="close"
+          ><img src="../../assets/svg/x.svg" alt="close"
         /></span>
       </header>
       <main>
-        <div class="table">
+        <div v-if="cartStore.addedItems.length" class="table">
           <div class="table-header">
             <span>4 товара</span><span>очистить список</span>
           </div>
-          <div class="table-body"><CartItem/></div>
+          <div class="table-body">
+            <CartItem
+              v-for="item in cartStore.addedItems"
+              :key="item.id"
+              :title="item.title"
+              :imageUrl="item.imageUrl"
+              :price="item.price"
+            />
+          </div>
+        </div>
+        <div class="table-empty" v-else>
+          <h3>Здесь пусто</h3>
+          <span>😩</span>
+          <p>Вернитесь на главную и добавьте товар в корзину</p>
         </div>
       </main>
-      <footer>
+      <footer v-if="cartStore.addedItems.length">
         <div class="cart-result">
           <span>Итого</span>
           <p>14 400₽</p>
@@ -106,11 +125,24 @@ footer {
   color: #1e1f1f66;
 }
 .table-body {
-    width: 600px;
+  width: 600px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
+  flex-direction: column;
+  height: calc(100vh - 313px);
+  overflow-y: scroll;
+}
+.table-empty {
+  color: #1f2020;
+  margin: 200px auto;
+}
+.table-empty > h3 {
+  font-weight: 500;
+}
+.table-empty > span {
+  font-size: 70px;
 }
 </style>
