@@ -13,13 +13,13 @@ const slides = [
 ];
 const nextSlide = () => {
   count.value++;
-  if (count.value === 6) {
+  if (count.value === 7) {
     count.value = 1;
   }
 };
 const prevSlide = () => {
   count.value--;
-  if (count.value === 1) {
+  if (count.value === 0) {
     count.value = 6;
   }
 };
@@ -79,6 +79,8 @@ setInterval(nextSlide, 5000);
   text-align: center;
   position: relative;
   overflow: hidden;
+  display: flex;
+
 }
 .slider-text {
   position: absolute;

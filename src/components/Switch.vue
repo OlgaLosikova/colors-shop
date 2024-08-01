@@ -12,6 +12,7 @@ const categories = [
 </script>
 
 <template>
+       <aside class="categories">
   <label
     class="switch"
     v-for="category in categories"
@@ -24,7 +25,7 @@ const categories = [
       @click.self="(e) => selectCategory(e,category.number)"
     />
     <span class="switch-slider"></span>{{ category.title }}
-  </label>
+  </label></aside>
 </template>
 
 <style scoped>
@@ -71,5 +72,14 @@ const categories = [
 }
 .switch-input:checked + .switch-slider::before {
   transform: translateX(14px);
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-transform: uppercase;
+  margin-top: 72px;
+  margin-left: 64px;
+  flex-basis: 20%;
 }
 </style>

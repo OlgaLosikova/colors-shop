@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+defineProps({
+  openCart: Function,
+});
+</script>
 
 <template>
   <header class="header">
@@ -11,19 +15,22 @@
         <li>Советы</li>
         <li>Найти магазин</li>
       </ul>
-    </nav><div class="header-buttons-wrapper">
-    <div class="call-wrapper">
-      <p class="phone">+7 (495) 221-77-69</p>
-      <span class="call-button">Заказать звонок</span>
-    </div>
-    <div class="header-icons">
-      <img src="../assets/svg/search.svg" alt="search" /><img
-        src="../assets/svg/profile.svg"
-        alt="profile"
-      /><img src="../assets/svg/heart.svg" alt="heart" /><span
-        class="cart-count"
-        >4</span
-      ></div>
+    </nav>
+    <div class="header-buttons-wrapper">
+      <div class="call-wrapper">
+        <p class="phone">+7 (495) 221-77-69</p>
+        <span class="call-button">Заказать звонок</span>
+      </div>
+      <div class="header-icons">
+        <img src="../assets/svg/search.svg" alt="search" /><img
+          src="../assets/svg/profile.svg"
+          alt="profile"
+        /><img src="../assets/svg/heart.svg" alt="heart" /><span
+          @click="openCart"
+          class="cart-count"
+          >4</span
+        >
+      </div>
     </div>
   </header>
 </template>
@@ -46,7 +53,6 @@
   gap: 24px;
   font-size: 14px;
   padding-inline-start: 172px;
-
 }
 .call-wrapper {
   text-align: start;
@@ -65,7 +71,6 @@
   gap: 24px;
 }
 .cart-count {
-  display: table-cell;
   width: 24px;
   height: 24px;
   background-color: #7bb899;
@@ -73,11 +78,12 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 23px;
+  cursor: pointer;
 }
-.header-buttons-wrapper{
-    display: flex;
-    margin-left: auto;
-    align-items: center;
-    justify-content: space-between;
+.header-buttons-wrapper {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

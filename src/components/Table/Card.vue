@@ -1,18 +1,21 @@
 <script setup>
+import { ref } from 'vue';
+
 defineProps({
 imageUrl:String,
 title:String,
 price:Number,
 })
+const isMouseOver=ref(false)
 </script>
 
 <template>
-  <div class="card">
+  <div class="card" @mouseover="isMouseOver=true" @mouseleave="isMouseOver=false">
     <img :src="imageUrl" alt="product-img" />
     <p>{{ title }}</p>
     <div class="card-footer">
       <p class="card-price">{{ price }} ₽</p>
-      <button class="add-button"><img  src="../assets/svg/plus.svg" alt="plus" /></button>
+      <button v-if="isMouseOver" class="add-button"><img  src="../../assets/svg/plus.svg" alt="plus" /></button>
     </div>
   </div>
 </template>
@@ -25,11 +28,12 @@ price:Number,
   align-items: center;
   padding: 0;
   border-bottom: 1px solid #0000001a;
+  text-align: start;
 }
 .add-button {
   width: 80px;
   height: 32px;
-  display: none;
+  padding: 5px 30px;
 }
 .card-price {
   font-weight: 600;

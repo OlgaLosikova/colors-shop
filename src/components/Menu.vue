@@ -51,6 +51,7 @@ const sort = [
   margin-block-start: 0;
   height: 48px;
   line-height: 48px;
+  cursor: pointer;
 }
 .menu-item:hover {
   background-color: #7bb899;
