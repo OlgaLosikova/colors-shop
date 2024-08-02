@@ -9,7 +9,6 @@ defineProps({
 import CartItem from "./CartItem.vue";
 
 const cartStore = useCartStore();
-console.log(cartStore.addedItems);
 </script>
 
 <template>
@@ -24,7 +23,8 @@ console.log(cartStore.addedItems);
       <main>
         <div v-if="cartStore.addedItems.length" class="table">
           <div class="table-header">
-            <span>4 товара</span><span>очистить список</span>
+            <span>{{ cartStore.quantity }} товара</span
+            ><span @click="cartStore.cleanCart">очистить список</span>
           </div>
           <div class="table-body">
             <CartItem
@@ -33,6 +33,8 @@ console.log(cartStore.addedItems);
               :title="item.title"
               :imageUrl="item.imageUrl"
               :price="item.price"
+              :count="item.count"
+              :id="item.id"
             />
           </div>
         </div>
@@ -45,7 +47,7 @@ console.log(cartStore.addedItems);
       <footer v-if="cartStore.addedItems.length">
         <div class="cart-result">
           <span>Итого</span>
-          <p>14 400₽</p>
+          <p>{{ cartStore.totalPrice }}₽</p>
         </div>
         <button>оформить заказ</button>
       </footer>
@@ -123,17 +125,20 @@ footer {
 .table-header > span:last-child {
   font-size: 14px;
   color: #1e1f1f66;
+  cursor: pointer;
+}
+.table-header > span:last-child:hover {
+  text-decoration: underline;
 }
 .table-body {
   width: 600px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 40px;
   flex-direction: column;
   height: calc(100vh - 313px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .table-empty {
   color: #1f2020;

@@ -1,9 +1,15 @@
 <script setup>
+import { useCartStore } from "../../store/CartSore";
+
 defineProps({
   imageUrl: String,
   title: String,
   price: Number,
+  count: Number,
+  id: Number,
 });
+
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -14,11 +20,14 @@ defineProps({
       <p>{{ price }} ₽</p>
     </div>
     <div class="buttons-wrapper">
-      <button><img src="../../assets/svg/minus.svg" alt="minus" /></button
-      ><span>2</span
-      ><button><img src="../../assets/svg/plus.svg" alt="plus" /></button>
+      <button @click="() => cartStore.decrementProduct(id)">
+        <img src="../../assets/svg/minus.svg" alt="minus" /></button
+      ><span>{{ count }}</span
+      ><button @click="() => cartStore.incrementProduct(id)">
+        <img src="../../assets/svg/plus.svg" alt="plus" />
+      </button>
     </div>
-    <img class="cart-delete" src="../../assets/svg/x.svg" alt="delete-item" />
+    <img @click="()=>cartStore.deleteProduct(id)" class="cart-delete" src="../../assets/svg/x.svg" alt="delete-item" />
   </div>
 </template>
 
@@ -56,12 +65,13 @@ defineProps({
 .cart-delete {
   opacity: 20%;
   margin-left: 37px;
+  cursor: pointer;
 }
-.product-text{
+.product-text {
   text-align: start;
   flex-basis: 25%;
 }
-.product-text>p:last-child{
+.product-text > p:last-child {
   font-weight: 500;
 }
 </style>

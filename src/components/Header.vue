@@ -1,7 +1,11 @@
 <script setup>
+import { useCartStore } from "../store/CartSore";
+
 defineProps({
   openCart: Function,
 });
+
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -28,7 +32,7 @@ defineProps({
         /><img src="../assets/svg/heart.svg" alt="heart" /><span
           @click="openCart"
           class="cart-count"
-          >4</span
+          >{{ cartStore.quantity }}</span
         >
       </div>
     </div>

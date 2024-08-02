@@ -11,10 +11,6 @@ defineProps({
 const isMouseOver = ref(false);
 const cartStore = useCartStore();
 
-const addProduct = (obj) => {
-  cartStore.addToCart(obj);
-
-};
 </script>
 
 <template>
@@ -29,7 +25,7 @@ const addProduct = (obj) => {
       <p class="card-price">{{ price }} ₽</p>
       <button
         v-if="isMouseOver"
-        @click="() => addProduct({ title, price, id, imageUrl })"
+        @click="() => cartStore.addToCart({ title, price, id, imageUrl})"
         class="add-button"
       >
         <img src="../../assets/svg/plus.svg" alt="plus" />

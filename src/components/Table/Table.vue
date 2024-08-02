@@ -16,7 +16,7 @@ defineProps({
 <template>
   <div class="table">
     <div class="table-header">
-      <p class="table-title">412 товаров</p>
+      <p class="table-title">{{ products.length }} товаров</p>
       <div @click="openSort" class="sort-wrapper">
         <p class="table-title">{{ sortTitle }}</p>
         <img src="../../assets/svg/polygon.svg" alt="polygon" />
