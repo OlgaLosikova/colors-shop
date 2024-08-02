@@ -74,4 +74,30 @@ const cartStore = useCartStore();
 .product-text > p:last-child {
   font-weight: 500;
 }
+@media (max-width: 625px) {
+.cart-item{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.product-text{
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.cart-delete{
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 3;
+justify-self: end;
+}
+.buttons-wrapper{
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin-left: 0;
+}
+
+}
 </style>

@@ -96,7 +96,7 @@ h2 {
   margin-block-start: 0;
 }
 footer {
-  width: 600px;
+  width: 100%;
   box-sizing: border-box;
   position: fixed;
   display: flex;
@@ -115,7 +115,7 @@ footer {
   font-weight: 500;
 }
 .table-header {
-  width: 600px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -131,7 +131,7 @@ footer {
   text-decoration: underline;
 }
 .table-body {
-  width: 600px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -149,5 +149,26 @@ footer {
 }
 .table-empty > span {
   font-size: 70px;
+}
+
+@media (max-width: 625px) {
+  .cart {
+    width: 100vw;
+  }
+  .table-header {
+    padding: 32px 24px 10px;
+  }
+  header {
+    padding: 32px 24px;
+  }
+  footer {
+    padding: 32px 24px;
+  }
+  .table-body{
+    padding:  0 24px;
+  }
+  .table-empty{
+    margin: 100px 24px;
+  }
 }
 </style>

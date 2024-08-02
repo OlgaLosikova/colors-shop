@@ -80,7 +80,6 @@ setInterval(nextSlide, 5000);
   position: relative;
   overflow: hidden;
   display: flex;
-
 }
 .slider-text {
   position: absolute;
@@ -145,5 +144,42 @@ nav {
   bottom: 166px;
   left: 420px;
   transform: rotate(180deg);
+}
+@media (max-width: 1070px) {
+  .chevron-right {
+    right: 30px;
+  }
+  .chevron-left {
+    left: 30px;
+  }
+}
+@media (max-width: 625px) {
+  .slider {
+    height: 42px;
+    text-align: left;
+    overflow: visible;
+  }
+  .slider > *:not(nav, .slider-text) {
+    display: none;
+  }
+  .slider-text > p {
+    display: none;
+  }
+  ul {
+    color: #1e1f1f4d;
+  }
+  nav {
+    padding: 16px 24px;
+  }
+  h1 {
+    font-size: 36px;
+    color: #1f2020;
+    margin-block-start: 0;
+  }
+  .slider-text {
+    width: auto;
+    position: static;
+    margin: 74px 24px 0;
+  }
 }
 </style>

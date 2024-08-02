@@ -12,20 +12,21 @@ const categories = [
 </script>
 
 <template>
-       <aside class="categories">
-  <label
-    class="switch"
-    v-for="category in categories"
-    :key="category.title"
-    :category="category"
-  >
-    <input
-      type="checkbox"
-      class="switch-input"
-      @click.self="(e) => selectCategory(e,category.number)"
-    />
-    <span class="switch-slider"></span>{{ category.title }}
-  </label></aside>
+  <aside class="categories">
+    <label
+      class="switch"
+      v-for="category in categories"
+      :key="category.title"
+      :category="category"
+    >
+      <input
+        type="checkbox"
+        class="switch-input"
+        @click.self="(e) => selectCategory(e, category.number)"
+      />
+      <span class="switch-slider"></span>{{ category.title }}
+    </label>
+  </aside>
 </template>
 
 <style scoped>
@@ -81,5 +82,10 @@ const categories = [
   margin-top: 72px;
   margin-left: 64px;
   flex-basis: 20%;
+}
+@media (max-width: 625px) {
+  .categories {
+    display: none;
+  }
 }
 </style>

@@ -17,6 +17,7 @@ defineProps({
   <div class="table">
     <div class="table-header">
       <p class="table-title">{{ products.length }} товаров</p>
+      <span class="filter-button">фильтры</span>
       <div @click="openSort" class="sort-wrapper">
         <p class="table-title">{{ sortTitle }}</p>
         <img src="../../assets/svg/polygon.svg" alt="polygon" />
@@ -48,7 +49,7 @@ defineProps({
 }
 .table-body {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 18px;
   grid-row-gap: 16px;
@@ -76,5 +77,30 @@ defineProps({
   gap: 4px;
   position: relative;
   cursor: pointer;
+}
+.filter-button {
+  display: none;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #1f2020;
+  line-height: 42px;
+}
+@media (max-width: 625px) {
+  .table {
+    margin-top: 89px;
+    margin-right: 24px;
+    margin-left: 24px;
+    width: 100%;
+  }
+  .filter-button {
+    display: block;
+  }
+  .table-header > p:first-child {
+    display: none;
+  }
+  .table-body {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
 </style>

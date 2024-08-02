@@ -10,6 +10,7 @@ const cartStore = useCartStore();
 
 <template>
   <header class="header">
+    <img src="../assets/svg/burger.svg" alt="burger-menu" />
     <img src="../assets/svg/logo.svg" alt="logo" />
     <nav>
       <ul class="navigation">
@@ -50,6 +51,9 @@ const cartStore = useCartStore();
   padding-right: 64px;
   height: 104px;
 }
+.header > img:first-child {
+  display: none;
+}
 .navigation {
   display: flex;
   text-transform: uppercase;
@@ -89,5 +93,50 @@ const cartStore = useCartStore();
   margin-left: auto;
   align-items: center;
   justify-content: space-between;
+}
+@media (max-width: 1390px) {
+  .navigation {
+    padding-inline-start: 30px;
+  }
+  .call-wrapper {
+    margin-right: 30px;
+  }
+}
+@media (max-width: 1125px) {
+  .navigation {
+    display: none;
+  }
+  .header > img:first-child {
+    display: block;
+    margin-right: 24px;
+  }
+  .header {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+@media (max-width: 625px) {
+  .call-wrapper {
+    display: none;
+  }
+  .header {
+    height: 44px;
+    border-bottom: 1px solid #1f20200f;
+  }
+}
+@media (max-width: 450px) {
+  .header-icons > img {
+    display: none;
+  }
+  .header {
+    justify-content: space-between;
+  }
+  .header>img:nth-child(2) {
+    width: 99px;
+  }
+
+  .header-buttons-wrapper {
+    margin-left: 0;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { useCartStore } from "../../store/CartSore";
 
 defineProps({
@@ -8,14 +8,16 @@ defineProps({
   price: Number,
   id: Number,
 });
+const isVisible = ref(false);
 const isMouseOver = ref(false);
-const cartStore = useCartStore();
 
+const cartStore = useCartStore();
 </script>
 
 <template>
   <div
     class="card"
+  
     @mouseover="isMouseOver = true"
     @mouseleave="isMouseOver = false"
   >
@@ -24,8 +26,8 @@ const cartStore = useCartStore();
     <div class="card-footer">
       <p class="card-price">{{ price }} ₽</p>
       <button
-        v-if="isMouseOver"
-        @click="() => cartStore.addToCart({ title, price, id, imageUrl})"
+        v-if="isVisible || isMouseOver"
+        @click="() => cartStore.addToCart({ title, price, id, imageUrl })"
         class="add-button"
       >
         <img src="../../assets/svg/plus.svg" alt="plus" />
@@ -37,12 +39,13 @@ const cartStore = useCartStore();
 <style scoped>
 .card {
   color: #1f2020;
-  display: inline-block;
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0;
   border-bottom: 1px solid #0000001a;
   text-align: start;
+  justify-content: space-between;
 }
 .add-button {
   width: 80px;
@@ -56,5 +59,11 @@ const cartStore = useCartStore();
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+@media (max-width: 625px) {
+  .card > img {
+    width: 156px;
+  }
 }
 </style>

@@ -56,4 +56,9 @@ const sort = [
 .menu-item:hover {
   background-color: #7bb899;
 }
+@media (max-width: 625px) {
+.menu{
+  right: 0;
+}
+}
 </style>
