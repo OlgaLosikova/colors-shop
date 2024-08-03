@@ -42,7 +42,7 @@ const cartStore = useCartStore();
       alt="delete-item"
     /><img
       v-else
-      class="cart-repeat"
+      class="cart-delete cart-repeat"
       src="../../assets/svg/repeat.svg"
       alt="repeat"
     />
@@ -58,10 +58,7 @@ const cartStore = useCartStore();
   border-top: 1px solid #0000001a;
   padding: 12px 0;
 }
-.cart-repeat{
-  opacity: 100%;
-  margin-left: 37px;
-}
+
 .cart-item > img:first-child {
   width: 96px;
   height: 96px;
@@ -86,8 +83,12 @@ const cartStore = useCartStore();
 }
 .cart-delete {
   opacity: 20%;
-  margin-left: 37px;
+  margin-left: 30px;
   cursor: pointer;
+}
+.cart-repeat{
+  opacity: 100%;
+
 }
 .product-text {
   text-align: start;
@@ -103,7 +104,7 @@ const cartStore = useCartStore();
 @media (max-width: 625px) {
   .cart-item {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 0.5fr;
   }
   .product-text {
     grid-row-start: 2;
