@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
+
 import SliderItem from "./SliderItem.vue";
+
 const count = ref(1);
 
 const slides = [
@@ -178,6 +180,7 @@ nav {
   }
   .slider-text {
     width: auto;
+    height: auto;
     position: static;
     margin: 74px 24px 0;
   }

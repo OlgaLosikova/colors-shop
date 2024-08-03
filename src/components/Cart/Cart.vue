@@ -1,9 +1,9 @@
 <script setup>
-import { useCartStore } from "../../store/CartSore";
+import { useCartStore } from "../../store/CartStore";
 
 defineProps({
   isOpenCart: Boolean,
-  closeCart: Function,
+  setVisibilityCart: Function,
 });
 
 import CartItem from "./CartItem.vue";
@@ -16,7 +16,7 @@ const cartStore = useCartStore();
     <div class="cart">
       <header>
         <h2>Корзина</h2>
-        <span @click="closeCart" class="close-img"
+        <span @click="setVisibilityCart" class="close-img"
           ><img src="../../assets/svg/x.svg" alt="close"
         /></span>
       </header>
@@ -154,6 +154,7 @@ footer {
 @media (max-width: 625px) {
   .cart {
     width: 100vw;
+    left: 0;
   }
   .table-header {
     padding: 32px 24px 10px;

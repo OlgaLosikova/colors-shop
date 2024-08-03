@@ -1,8 +1,8 @@
 <script setup>
-import { useCartStore } from "../store/CartSore";
+import { useCartStore } from "../store/CartStore";
 
 defineProps({
-  openCart: Function,
+  setVisibilityCart: Function,
 });
 
 const cartStore = useCartStore();
@@ -31,7 +31,7 @@ const cartStore = useCartStore();
           src="../assets/svg/profile.svg"
           alt="profile"
         /><img src="../assets/svg/heart.svg" alt="heart" /><span
-          @click="openCart"
+          @click="setVisibilityCart"
           class="cart-count"
           >{{ cartStore.quantity }}</span
         >
@@ -131,7 +131,7 @@ const cartStore = useCartStore();
   .header {
     justify-content: space-between;
   }
-  .header>img:nth-child(2) {
+  .header > img:nth-child(2) {
     width: 99px;
   }
 

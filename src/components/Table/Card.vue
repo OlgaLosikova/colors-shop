@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watchEffect } from "vue";
-import { useCartStore } from "../../store/CartSore";
+import { ref } from "vue";
+import { useCartStore } from "../../store/CartStore";
 
 defineProps({
   imageUrl: String,
@@ -17,7 +17,6 @@ const cartStore = useCartStore();
 <template>
   <div
     class="card"
-  
     @mouseover="isMouseOver = true"
     @mouseleave="isMouseOver = false"
   >

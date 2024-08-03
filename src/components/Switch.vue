@@ -1,6 +1,11 @@
 <script setup>
+import { useFiltersStore } from "../store/FiltersStore";
+
+const filtersStore = useFiltersStore();
+
 defineProps({
-  selectCategory: Function,
+  isOpenCategories: Boolean,
+  setVisibilityCategories: Function,
 });
 const categories = [
   { title: "новинки", number: 1 },
@@ -12,7 +17,8 @@ const categories = [
 </script>
 
 <template>
-  <aside class="categories">
+  <aside class="categories" :style="isOpenCategories && 'display:flex'">
+    <img src="../assets/svg/Rectangle.svg" alt="rectangle" />
     <label
       class="switch"
       v-for="category in categories"
@@ -22,11 +28,20 @@ const categories = [
       <input
         type="checkbox"
         class="switch-input"
-        @click.self="(e) => selectCategory(e, category.number)"
+        @click.self="(e) => filtersStore.selectCategory(e, category.number)"
       />
-      <span class="switch-slider"></span>{{ category.title }}
+      <span
+        :style="isOpenCategories && 'display:block'"
+        class="switch-slider"
+      ></span
+      >{{ category.title }}
     </label>
   </aside>
+  <div
+    v-if="isOpenCategories"
+    @click="setVisibilityCategories"
+    class="switch-overlay"
+  ></div>
 </template>
 
 <style scoped>
@@ -37,6 +52,9 @@ const categories = [
   border-radius: 11px;
   color: #1f2020;
   text-align: start;
+}
+.categories > img {
+  display: none;
 }
 .switch-input {
   width: 0;
@@ -83,9 +101,39 @@ const categories = [
   margin-left: 64px;
   flex-basis: 20%;
 }
+.switch-overlay {
+  display: none;
+}
 @media (max-width: 625px) {
   .categories {
     display: none;
+    z-index: 1001;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    margin: 160px 0 0;
+    padding: 0 24px;
+    border-radius: 24px 24px 0 0;
+    align-items: flex-start;
+  }
+  .switch-overlay {
+    background-color: #000000b3;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 1000;
+    display: block;
+  }
+  .categories > img {
+    align-self: center;
+    display: block;
+    margin-bottom: 28px;
+    margin-top: 12px;
   }
 }
 </style>

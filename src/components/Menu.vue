@@ -1,26 +1,28 @@
 <script setup>
-defineProps({
-  changeSort: Function,
-  isOpen: Boolean,
-});
-const sort = [
-  {title:"Сначала дорогие",type:"-price"},
-  {title:"Сначала недорогие", type:"price"},
-  {title:"Сначала популярные", type:"-popularity"},
-  {title:"Сначала новые", type:"-date"},
-];
+import { useFiltersStore } from "../store/FiltersStore";
 
+const filtersStore = useFiltersStore();
+
+const sort = [
+  { title: "Сначала дорогие", type: "-price" },
+  { title: "Сначала недорогие", type: "price" },
+  { title: "Сначала популярные", type: "-popularity" },
+  { title: "Сначала новые", type: "-date" },
+];
 </script>
 
 <template>
-
-    <div v-if="isOpen" class="menu">
-      <p v-for="item in sort" :key="item.title" class="menu-item" @click="()=>changeSort(item.title, item.type)">
-        {{ item.title }}
-      </p>
-    </div>
-    <div v-if="isOpen" class="menu-overlay"></div>
-
+  <div v-if="filtersStore.isOpenSort" class="menu">
+    <p
+      v-for="item in sort"
+      :key="item.title"
+      class="menu-item"
+      @click="() => filtersStore.changeSort(item.title, item.type)"
+    >
+      {{ item.title }}
+    </p>
+  </div>
+  <div v-if="filtersStore.isOpenSort" class="menu-overlay"></div>
 </template>
 
 <style scoped>
@@ -57,8 +59,8 @@ const sort = [
   background-color: #7bb899;
 }
 @media (max-width: 625px) {
-.menu{
-  right: 0;
-}
+  .menu {
+    right: 0;
+  }
 }
 </style>

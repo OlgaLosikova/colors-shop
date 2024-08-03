@@ -1,5 +1,5 @@
 <script setup>
-import { useCartStore } from "../../store/CartSore";
+import { useCartStore } from "../../store/CartStore";
 
 defineProps({
   imageUrl: String,
@@ -27,7 +27,12 @@ const cartStore = useCartStore();
         <img src="../../assets/svg/plus.svg" alt="plus" />
       </button>
     </div>
-    <img @click="()=>cartStore.deleteProduct(id)" class="cart-delete" src="../../assets/svg/x.svg" alt="delete-item" />
+    <img
+      @click="() => cartStore.deleteProduct(id)"
+      class="cart-delete"
+      src="../../assets/svg/x.svg"
+      alt="delete-item"
+    />
   </div>
 </template>
 
@@ -75,29 +80,29 @@ const cartStore = useCartStore();
   font-weight: 500;
 }
 @media (max-width: 625px) {
-.cart-item{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  .cart-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .product-text {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align: center;
+  }
+  .cart-delete {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    justify-self: end;
+  }
+  .buttons-wrapper{
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .cart-item > img:first-child {
+justify-self: center;
 }
-.product-text{
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
-  grid-column-end: 4;
-}
-.cart-delete{
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 3;
-justify-self: end;
-}
-.buttons-wrapper{
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  margin-left: 0;
-}
-
 }
 </style>

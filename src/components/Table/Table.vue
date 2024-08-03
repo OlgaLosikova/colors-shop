@@ -1,15 +1,15 @@
 <script setup>
-import { ref } from "vue";
+import { useFiltersStore } from "../../store/FiltersStore";
+
+const filtersStore = useFiltersStore();
 
 import Menu from "../Menu.vue";
 import Card from "./Card.vue";
 
+
 defineProps({
-  sortTitle: String,
   products: Array,
-  changeSort: Function,
-  openSort: Function,
-  isOpen: Boolean,
+  setVisibilityCategories: Function,
 });
 </script>
 
@@ -17,12 +17,14 @@ defineProps({
   <div class="table">
     <div class="table-header">
       <p class="table-title">{{ products.length }} товаров</p>
-      <span class="filter-button">фильтры</span>
-      <div @click="openSort" class="sort-wrapper">
-        <p class="table-title">{{ sortTitle }}</p>
+      <span @click="setVisibilityCategories" class="filter-button"
+        >фильтры</span
+      >
+      <div @click="filtersStore.isOpenSort=true" class="sort-wrapper">
+        <p class="table-title">{{ filtersStore.sortTitle }}</p>
         <img src="../../assets/svg/polygon.svg" alt="polygon" />
       </div>
-      <Menu :changeSort="changeSort" :isOpen="isOpen" />
+      <Menu  />
     </div>
     <div v-if="products.length" class="table-body">
       <Card
@@ -34,6 +36,7 @@ defineProps({
         :imageUrl="product.image"
       />
     </div>
+
     <div class="table-empty" v-else>
       <h2>Нет ни одного товара</h2>
       <p>Попробуйте сбросить или изменить параметры фильтрации</p>
@@ -85,6 +88,7 @@ defineProps({
   text-transform: uppercase;
   color: #1f2020;
   line-height: 42px;
+  cursor: pointer;
 }
 @media (max-width: 625px) {
   .table {
