@@ -1,22 +1,25 @@
 <script setup>
 import { useFiltersStore } from "../../store/FiltersStore";
+import { useProductStore } from "../../store/ProductsStore";
 
 const filtersStore = useFiltersStore();
+const productStore = useProductStore();
 
 import Menu from "../Menu.vue";
 import Card from "./Card.vue";
 
 
 defineProps({
-  products: Array,
   setVisibilityCategories: Function,
+  isSmallWidth:Boolean,
 });
+
 </script>
 
 <template>
   <div class="table">
     <div class="table-header">
-      <p class="table-title">{{ products.length }} товаров</p>
+      <p class="table-title">{{ productStore.products.length }} товаров</p>
       <span @click="setVisibilityCategories" class="filter-button"
         >фильтры</span
       >
@@ -26,14 +29,16 @@ defineProps({
       </div>
       <Menu  />
     </div>
-    <div v-if="products.length" class="table-body">
+    <div v-if="productStore.products.length" class="table-body">
       <Card
-        v-for="product in products"
+        v-for="product in productStore.products"
         :key="product.id"
         :id="product.id"
         :title="product.product"
         :price="product.price"
         :imageUrl="product.image"
+        :categories="product.categories"
+        :isSmallWidth="isSmallWidth"
       />
     </div>
 

@@ -53,6 +53,7 @@ setInterval(nextSlide, 5000);
     </div>
     <div class="slider-markers">
       <span
+        @click="count = slide.id"
         v-for="slide in slides"
         :key="slide.id"
         :class="count === slide.id ? 'marker selected' : 'marker'"
@@ -124,6 +125,9 @@ nav {
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+.slider-markers > span {
+  cursor: pointer;
 }
 .marker {
   width: 6px;

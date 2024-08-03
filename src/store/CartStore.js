@@ -5,6 +5,7 @@ export const useCartStore = defineStore("cartStore", {
     addedItems: [],
     totalPrice: 0,
     quantity: 0,
+    isInStock:true,
   }),
   actions: {
     addToCart(obj) {
@@ -20,10 +21,14 @@ export const useCartStore = defineStore("cartStore", {
           }
         });
       }
+      this.addedItems.map(item=>{
+        if (!item.categories.includes(2)){
+          item.isInStock=false;
+        } else item.isInStock=true;
+      })
       return this.addedItems;
     },
     decrementProduct(id) {
-      
       this.addedItems.find((item) => {
         if (id === item.id) {
           if (item.count > 1) {
@@ -54,10 +59,10 @@ export const useCartStore = defineStore("cartStore", {
         }
       });
     },
-    cleanCart(){
-      this.addedItems=[];
-      this.totalPrice=0;
-      this.quantity=0;
-    }
+    cleanCart() {
+      this.addedItems = [];
+      this.totalPrice = 0;
+      this.quantity = 0;
+    },
   },
 });

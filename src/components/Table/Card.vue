@@ -2,16 +2,19 @@
 import { ref } from "vue";
 import { useCartStore } from "../../store/CartStore";
 
+
 defineProps({
   imageUrl: String,
   title: String,
   price: Number,
   id: Number,
+  isSmallWidth: Boolean,
+  categories: Array,
 });
-const isVisible = ref(false);
+const cartStore = useCartStore();
+
 const isMouseOver = ref(false);
 
-const cartStore = useCartStore();
 </script>
 
 <template>
@@ -25,8 +28,10 @@ const cartStore = useCartStore();
     <div class="card-footer">
       <p class="card-price">{{ price }} ₽</p>
       <button
-        v-if="isVisible || isMouseOver"
-        @click="() => cartStore.addToCart({ title, price, id, imageUrl })"
+        v-if="isSmallWidth || isMouseOver"
+        @click="
+          () => cartStore.addToCart({ title, price, id, imageUrl, categories })
+        "
         class="add-button"
       >
         <img src="../../assets/svg/plus.svg" alt="plus" />
@@ -63,6 +68,16 @@ const cartStore = useCartStore();
 @media (max-width: 625px) {
   .card > img {
     width: 156px;
+  }
+  .add-button {
+    background-color: #f2f2f2;
+    padding: 0;
+    width: 40px;
+    height: 24px;
+  }
+  .add-button > img {
+    width: 16px;
+    height: 16px;
   }
 }
 </style>

@@ -35,6 +35,7 @@ const cartStore = useCartStore();
               :price="item.price"
               :count="item.count"
               :id="item.id"
+              :isInStock="item.isInStock"
             />
           </div>
         </div>

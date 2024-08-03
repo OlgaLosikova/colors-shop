@@ -7,31 +7,44 @@ defineProps({
   price: Number,
   count: Number,
   id: Number,
+  isInStock: Boolean,
 });
 
 const cartStore = useCartStore();
 </script>
 
 <template>
-  <div class="cart-item">
+  <div :class="isInStock ? 'cart-item ' : 'cart-item absent'">
     <img :src="imageUrl" alt="product-img" />
     <div class="product-text">
       <p>{{ title }}</p>
       <p>{{ price }} ₽</p>
     </div>
     <div class="buttons-wrapper">
-      <button @click="() => cartStore.decrementProduct(id)">
+      <button
+        :disabled="!isInStock"
+        @click="() => cartStore.decrementProduct(id)"
+      >
         <img src="../../assets/svg/minus.svg" alt="minus" /></button
       ><span>{{ count }}</span
-      ><button @click="() => cartStore.incrementProduct(id)">
+      ><button
+        :disabled="!isInStock"
+        @click="() => cartStore.incrementProduct(id)"
+      >
         <img src="../../assets/svg/plus.svg" alt="plus" />
       </button>
     </div>
     <img
+      v-if="isInStock"
       @click="() => cartStore.deleteProduct(id)"
       class="cart-delete"
       src="../../assets/svg/x.svg"
       alt="delete-item"
+    /><img
+      v-else
+      class="cart-repeat"
+      src="../../assets/svg/repeat.svg"
+      alt="repeat"
     />
   </div>
 </template>
@@ -44,6 +57,10 @@ const cartStore = useCartStore();
   width: 100%;
   border-top: 1px solid #0000001a;
   padding: 12px 0;
+}
+.cart-repeat{
+  opacity: 100%;
+  margin-left: 37px;
 }
 .cart-item > img:first-child {
   width: 96px;
@@ -79,6 +96,10 @@ const cartStore = useCartStore();
 .product-text > p:last-child {
   font-weight: 500;
 }
+.absent {
+  opacity: 20%;
+  cursor: default;
+}
 @media (max-width: 625px) {
   .cart-item {
     display: grid;
@@ -97,12 +118,12 @@ const cartStore = useCartStore();
     grid-column-start: 3;
     justify-self: end;
   }
-  .buttons-wrapper{
+  .buttons-wrapper {
     grid-row-start: 1;
     grid-row-end: 3;
   }
   .cart-item > img:first-child {
-justify-self: center;
-}
+    justify-self: center;
+  }
 }
 </style>
