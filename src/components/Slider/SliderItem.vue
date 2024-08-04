@@ -8,7 +8,7 @@ defineProps({
 
 <template>
   <div class="img-container" :style="id===1&&`margin-left:${-(count -1)*100}%`">
-    <img  :src="image" alt="slide" />
+    <img  :src="`/src/assets/slider-images/${image}`" alt="slide" />
   </div>
 </template>
 

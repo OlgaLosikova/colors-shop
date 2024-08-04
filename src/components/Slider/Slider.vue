@@ -33,7 +33,7 @@ setInterval(nextSlide, 5000);
     <SliderItem
       v-for="slide in slides"
       :key="slide.id"
-      :image="`/src/assets/slider-images/${slide.img}`"
+      :image="slide.img"
       :count="count"
       :id="slide.id"
     />
