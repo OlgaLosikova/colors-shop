@@ -48,7 +48,6 @@ const categories = [
 .switch {
   display: flex;
   position: relative;
-
   border-radius: 11px;
   color: #1f2020;
   text-align: start;

@@ -97,9 +97,8 @@ const cartStore = useCartStore();
 .product-text > p:last-child {
   font-weight: 500;
 }
-.absent {
+.absent>*:not(img:last-child) {
   opacity: 20%;
-  cursor: default;
 }
 @media (max-width: 625px) {
   .cart-item {

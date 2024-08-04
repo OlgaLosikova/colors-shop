@@ -25,13 +25,19 @@ useResizeObserver(main, (entries) => {
   const { width } = entry.contentRect;
   if (width <= 625) isSmallWidth.value = true;
   else isSmallWidth.value = false;
-  if (width > 625) isOpenCategories.value = false;
+  if (width > 625) {
+    isOpenCategories.value = false;
+    document.body.style.overflow = "auto";
+  }
 });
 
 const setVisibilityCategories = () => {
   isOpenCategories.value === false
     ? (isOpenCategories.value = true)
     : (isOpenCategories.value = false);
+  isSmallWidth.value && isOpenCategories.value
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
 };
 const setVisibilityCart = () => {
   isOpenCart.value === false
