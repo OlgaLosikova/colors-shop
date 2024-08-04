@@ -36,7 +36,7 @@ defineProps({
         :id="product.id"
         :title="product.product"
         :price="product.price"
-        :imageUrl="`/src/assets/${product.image}`"
+        :imageUrl="product.image"
         :categories="product.categories"
         :isSmallWidth="isSmallWidth"
       />
