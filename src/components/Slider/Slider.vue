@@ -6,12 +6,12 @@ import SliderItem from "./SliderItem.vue";
 const count = ref(1);
 
 const slides = [
-  { id: 1, img: "/src/assets/slider-images/slide1.png" },
-  { id: 2, img: "/src/assets/slider-images/slide2.jpg" },
-  { id: 3, img: "/src/assets/slider-images/slide3.jpg" },
-  { id: 4, img: "/src/assets/slider-images/slide1.png" },
-  { id: 5, img: "/src/assets/slider-images/slide2.jpg" },
-  { id: 6, img: "/src/assets/slider-images/slide3.jpg" },
+  { id: 1, img: "slide1.png" },
+  { id: 2, img: "slide2.jpg" },
+  { id: 3, img: "slide3.jpg" },
+  { id: 4, img: "slide1.png" },
+  { id: 5, img: "slide2.jpg" },
+  { id: 6, img: "slide3.jpg" },
 ];
 const nextSlide = () => {
   count.value++;
@@ -33,7 +33,7 @@ setInterval(nextSlide, 5000);
     <SliderItem
       v-for="slide in slides"
       :key="slide.id"
-      :image="slide.img"
+      :image="`/src/assets/slider-images/${slide.img}`"
       :count="count"
       :id="slide.id"
     />

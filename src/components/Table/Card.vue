@@ -34,7 +34,7 @@ const isMouseOver = ref(false);
         "
         class="add-button"
       >
-        <img src="../../assets/svg/plus.svg" alt="plus" />
+        <img src="/src/assets/svg/plus.svg" alt="plus" />
       </button>
     </div>
   </div>
