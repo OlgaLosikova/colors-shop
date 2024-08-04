@@ -23,7 +23,7 @@ const isMouseOver = ref(false);
     @mouseover="isMouseOver = true"
     @mouseleave="isMouseOver = false"
   >
-    <img :src="`/src/assets/${imageUrl}`" alt="product-img" />
+    <img :src="'src/assets/'+imageUrl" alt="product-img" />
     <p>{{ title }}</p>
     <div class="card-footer">
       <p class="card-price">{{ price }} ₽</p>
